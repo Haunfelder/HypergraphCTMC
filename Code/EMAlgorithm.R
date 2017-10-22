@@ -1,3 +1,9 @@
+
+## This function returns Maximum Likelihood Estimates for holding parameters and 
+## transition probabilities using an EM algorithm 
+# Input: A hypergraph data frame, number of iterations
+# Output:  A named vector of maximum likelihood estimates
+
 EM_alg=function(ctmc.sim,niter=30){
   
   lambda=matrix(0,nrow=niter,ncol=6)
@@ -279,6 +285,8 @@ ctmc.em.obs %>%
 
 
 ## Standard Error Estimates --------------------------------------------------------------------------------------------
+
+# Computes the hessian and returns standard error estimates
 lambda_mle=c(251.2032, 283.7163, 202.1596, 197.9379, 135.5240, 150.1860, 104.8401)
 transprobs_mle=c(0.4499191, 0.4518757, 0.1983434, 0.4532005, 0.2482894, 0.3039186, 0.2837092, 0.1996541, 0.1959190, 0.2999592)
 lambda_mle=both.obs[[1]]

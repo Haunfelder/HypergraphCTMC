@@ -1,62 +1,77 @@
+library(dplyr)
+library(ggplot2)
+library(igraph)
+library(lubridate)
+library(plyr)
+library(dplyr)
+library(Matrix)
+library(knitr)
+library(xtable)
+library(doParallel)
+library(parallel)
+library(foreach)
+library(combinat)
 
+setwd("C:/Users/haunf/Documents/GitHub/HypergraphCTMC/Code")
 
 ##Sim 1 Parameters
-lambda_true=c(250, 200, 200, 300, 300, 150 , 150)
-names(lambda_true)=c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
+lambda_true = c(250, 200, 200, 300, 300, 150 , 150)
+names(lambda_true) = c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
 
-trans_probs_true=c(0.45, 0.45, 0.2, 0.45, 0.25, 0.3, 0.35, 0.35, 0.2, 0.3)
-names(trans_probs_true)=c("p01|00","p10|00","p11|10","p20|10","p11|01",
+trans_probs_true = c(0.45, 0.45, 0.2, 0.45, 0.25, 0.3, 0.35, 0.35, 0.2, 0.3)
+names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars=c(lambda_true,trans_probs_true)
+pars = c(lambda_true,trans_probs_true)
 
 
 
 ##Sim 2 Parameters
-lambda_true=c(1/500, 1/100, 1/100, 1/150, 1/150, 1/200 , 1/200)
-names(lambda_true)=c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
+lambda_true = c(1/500, 1/100, 1/100, 1/150, 1/150, 1/200 , 1/200)
+names(lambda_true) = c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
 
-trans_probs_true=c(0.10, 0.30, 0.35, 0.6, 0.9, 0.9, 0.8, 0.8, 0.25, 0.65)
-names(trans_probs_true)=c("p01|00","p10|00","p11|10","p20|10","p11|01",
+trans_probs_true = c(0.10, 0.30, 0.35, 0.6, 0.9, 0.9, 0.8, 0.8, 0.25, 0.65)
+names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars=c(lambda_true,trans_probs_true)
+pars = c(lambda_true,trans_probs_true)
 
 
 #Set Parameters (Simulation 3)
-lambda_true=c(1/200, 1/100, 1/100, 1/150, 1/400, 1/450 , 1/450)
-names(lambda_true)=c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
+lambda_true = c(1/200, 1/100, 1/100, 1/150, 1/400, 1/450 , 1/450)
+names(lambda_true) = c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
 
-trans_probs_true=c(0.10, 0.4, 0.05, 0.7, 0.5, 0.5, 0.5, 0.8, 0.05, 0.75)
-names(trans_probs_true)=c("p01|00","p10|00","p11|10","p20|10","p11|01",
+trans_probs_true = c(0.10, 0.4, 0.05, 0.7, 0.5, 0.5, 0.5, 0.8, 0.05, 0.75)
+names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars=c(lambda_true,trans_probs_true)
+pars = c(lambda_true,trans_probs_true)
 
 #Set Parameters (Simulation 4)
-lambda_true=c(1/200, 1/400, 1/400, 1/450, 1/100, 1/150 , 1/150)
-names(lambda_true)=c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
+lambda_true = c(1/200, 1/400, 1/400, 1/450, 1/100, 1/150 , 1/150)
+names(lambda_true) = c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
 
-trans_probs_true=c(0.60, 0.2, 0.6, 0.1, 0.7, 0.7, 0.7, 0.6, 0.5, 0.4)
-names(trans_probs_true)=c("p01|00","p10|00","p11|10","p20|10","p11|01",
+trans_probs_true = c(0.60, 0.2, 0.6, 0.1, 0.7, 0.7, 0.7, 0.6, 0.5, 0.4)
+names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars=c(lambda_true,trans_probs_true)
+pars = c(lambda_true,trans_probs_true)
 
 
 
 
 
 
-nsim=200
+nsim = 200
 
 
-em_lambda=matrix(0,nrow=nsim,ncol=length(lambda_true))
-em_trans_probs=matrix(0,nrow=nsim,ncol=length(trans_probs_true))
+em_lambda = matrix(0,nrow=nsim,ncol=length(lambda_true))
+em_trans_probs = matrix(0,nrow=nsim,ncol=length(trans_probs_true))
 
 
 
 
+source("expconv.R")
 
 quantiles=c(0.50,0.75,0.90,0.95)
 bigt=c(sapply(quantiles,function(x){qexpconv(x,pars[c("lambda00","lambda10")])}),
@@ -79,18 +94,7 @@ n=seq(500,2000,300)
 tandn=expand.grid(bigt, n)
 
 
-library(dplyr)
-library(ggplot2)
-library(igraph)
-library(lubridate)
-library(plyr)
-library(dplyr)
-library(Matrix)
-library(knitr)
-library(xtable)
-library(doParallel)
-library(parallel)
-library(foreach)
+
 #library(doSNOW)
 cl <- makeCluster(3)
 #registerDoSNOW(cl)
@@ -105,28 +109,28 @@ library(data.table)
 
 sim_results=foreach (i = 1:dim(tandn)[1],.packages=c("dplyr","data.table")) %:%
   foreach( j = 1:nsim,.combine='rbind',.packages=c("dplyr","data.table")) %dopar%{
-    ctmc.sim=rbindlist(lapply(1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
+    ctmc.sim = rbindlist(lapply(1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
     #ctmc.sim=rbindlist(parLapplyLB(cl,1:1000,function(x){data.frame(triad.sim(pars,bigt[i]),TrioID=x)}))
-    colnames(ctmc.sim)=c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
-    ctmc.sim=data.frame(ctmc.sim)
+    colnames(ctmc.sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
+    ctmc.sim = data.frame(ctmc.sim)
     
     both=EM_alg(ctmc.sim)
-    c(both[[1]],  both[[2]])
+    c(both[[1]], both[[2]])
   }
 
 
 sim_results=list()
 for(i in 1:dim(tandn)[1]){
-  sim_results[[i]]=matrix(0,nrow=nsim,ncol=length(pars))
+  sim_results[[i]] = matrix(0,nrow=nsim,ncol=length(pars))
   for(j in 1:nsim){
     clusterExport(cl,varlist=c("i","j","tandn","triad.sim"))
     #ctmc.sim=rbindlist(lapply(1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
-    ctmc.sim=rbindlist(parLapplyLB(cl,1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
-    colnames(ctmc.sim)=c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
-    ctmc.sim=data.frame(ctmc.sim)
+    ctmc.sim = rbindlist(parLapplyLB(cl,1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
+    colnames(ctmc.sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
+    ctmc.sim = data.frame(ctmc.sim)
     
-    both=EM_alg(ctmc.sim)
-    sim_results[[i]][j,]=c(both[[1]],  both[[2]])
+    both = EM_alg(ctmc.sim)
+    sim_results[[i]][j,] = c(both[[1]],  both[[2]])
   }
   print((i/dim(tandn)[1])*100)
 }
