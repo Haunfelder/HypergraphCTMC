@@ -1,3 +1,6 @@
+Hypergraph 3-node Subgraph CTMC
+===============================
+
 This project contains all code to replicate simulations in
 `Hypergraph Modeling of the Evolution of Team Relationships with Applications to Academic Funding Collaboration`
 by Ryan Haunfelder, Bailey Fosdick, and Haonan Wang.
@@ -93,33 +96,33 @@ The four simulation parameters are summarized in the table below.
 </tbody>
 </table>
 
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="11%" />
 <col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="center"> </th>
-<th align="center"><span class="math inline"><em>p</em><sub>01|00</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>10|00</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>11|10</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>20|10</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>11|01</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>21|11</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>31|21</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>31|30</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>21|20</sub></span></th>
-<th align="center"><span class="math inline"><em>p</em><sub>30|20</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>01</sub>|<em>h</em><sub>00</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>10</sub>|<em>h</em><sub>00</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>11</sub>|<em>h</em><sub>10</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>20</sub>|<em>h</em><sub>10</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>11</sub>|<em>h</em><sub>01</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>21</sub>|<em>h</em><sub>11</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>31</sub>|<em>h</em><sub>21</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>31</sub>|<em>h</em><sub>30</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>21</sub>|<em>h</em><sub>20</sub>)</span></th>
+<th align="center"><span class="math inline"><em>p</em>(<em>h</em><sub>30</sub>|<em>h</em><sub>20</sub>)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -177,3 +180,5 @@ The four simulation parameters are summarized in the table below.
 </tr>
 </tbody>
 </table>
+
+The wireframe plots
