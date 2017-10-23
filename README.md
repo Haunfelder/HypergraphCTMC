@@ -6,9 +6,8 @@ Given holding parameters for the eight subgraphs, transition
 probabilities between them, and a viewing length, the `triad_sim`
 function generates a single observation from the CTMC model. The dyads
 and triads column give each state of the simulated chain. Each chain
-starts at the initial state
-*h*<sub>00</sub>
-, so the first row will always have a dyad and triad value of 0.
+starts at the initial state *h*<sub>00</sub>, so the first row will
+always have a dyad and triad value of 0.
 
     lambda_true = c(1/250, 1/200, 1/200, 1/300, 1/300, 1/150 , 1/150)
     names(lambda_true) = c("lambda00","lambda10","lambda20","lambda30","lambda01","lambda11","lambda21")
@@ -25,316 +24,156 @@ starts at the initial state
     ## 1     0      0    489.7654 489.7654
     ## 2     0      1   1510.2346      Inf
 
-The simulations are
+The four simulation parameters are summarized in the table below.
 
-<!-- html table generated in R 3.4.1 by xtable 1.8-2 package -->
-<!-- Sun Oct 22 19:06:45 2017 -->
-<table border="1">
-<tr>
-<th>
-</th>
-<th>
-\_{00}
-</th>
-<th>
-\_{10}
-</th>
-<th>
-\_{20}
-</th>
-<th>
-\_{30}
-</th>
-<th>
-\_{01}
-</th>
-<th>
-\_{11}
-</th>
-<th>
-\_{21}
-</th>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center"><span class="math inline"><em>λ</em><sub>00</sub></span></th>
+<th align="center"><span class="math inline"><em>λ</em><sub>10</sub></span></th>
+<th align="center"><span class="math inline"><em>λ</em><sub>20</sub></span></th>
+<th align="center"><span class="math inline"><em>λ</em><sub>30</sub></span></th>
+<th align="center"><span class="math inline"><em>λ</em><sub>01</sub></span></th>
+<th align="center"><span class="math inline"><em>λ</em><sub>11</sub></span></th>
+<th align="center"><span class="math inline"><em>λ</em><sub>21</sub></span></th>
 </tr>
-<tr>
-<td align="right">
-Simulation 1
-</td>
-<td align="right">
-250.00
-</td>
-<td align="right">
-200.00
-</td>
-<td align="right">
-200.00
-</td>
-<td align="right">
-300.00
-</td>
-<td align="right">
-300.00
-</td>
-<td align="right">
-150.00
-</td>
-<td align="right">
-150.00
-</td>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Simulation 1</strong></td>
+<td align="center">250</td>
+<td align="center">200</td>
+<td align="center">200</td>
+<td align="center">300</td>
+<td align="center">300</td>
+<td align="center">150</td>
+<td align="center">150</td>
 </tr>
-<tr>
-<td align="right">
-Simulation 2
-</td>
-<td align="right">
-500.00
-</td>
-<td align="right">
-100.00
-</td>
-<td align="right">
-100.00
-</td>
-<td align="right">
-150.00
-</td>
-<td align="right">
-150.00
-</td>
-<td align="right">
-200.00
-</td>
-<td align="right">
-200.00
-</td>
+<tr class="even">
+<td align="center"><strong>Simulation 2</strong></td>
+<td align="center">500</td>
+<td align="center">100</td>
+<td align="center">100</td>
+<td align="center">150</td>
+<td align="center">150</td>
+<td align="center">200</td>
+<td align="center">200</td>
 </tr>
-<tr>
-<td align="right">
-Simulation 3
-</td>
-<td align="right">
-200.00
-</td>
-<td align="right">
-100.00
-</td>
-<td align="right">
-100.00
-</td>
-<td align="right">
-150.00
-</td>
-<td align="right">
-400.00
-</td>
-<td align="right">
-450.00
-</td>
-<td align="right">
-450.00
-</td>
+<tr class="odd">
+<td align="center"><strong>Simulation 3</strong></td>
+<td align="center">200</td>
+<td align="center">100</td>
+<td align="center">100</td>
+<td align="center">150</td>
+<td align="center">400</td>
+<td align="center">450</td>
+<td align="center">450</td>
 </tr>
-<tr>
-<td align="right">
-Simulation 4
-</td>
-<td align="right">
-200.00
-</td>
-<td align="right">
-400.00
-</td>
-<td align="right">
-400.00
-</td>
-<td align="right">
-450.00
-</td>
-<td align="right">
-100.00
-</td>
-<td align="right">
-150.00
-</td>
-<td align="right">
-150.00
-</td>
+<tr class="even">
+<td align="center"><strong>Simulation 4</strong></td>
+<td align="center">200</td>
+<td align="center">400</td>
+<td align="center">400</td>
+<td align="center">450</td>
+<td align="center">100</td>
+<td align="center">150</td>
+<td align="center">150</td>
 </tr>
+</tbody>
 </table>
-<!-- html table generated in R 3.4.1 by xtable 1.8-2 package -->
-<!-- Sun Oct 22 19:06:46 2017 -->
-<table border="1">
-<tr>
-<th>
-</th>
-<th>
-p\_{01|00}
-</th>
-<th>
-p\_{10|00}
-</th>
-<th>
-p\_{11|10}
-</th>
-<th>
-p\_{20|10}
-</th>
-<th>
-p\_{11|01}
-</th>
-<th>
-p\_{21|11}
-</th>
-<th>
-p\_{31|21}
-</th>
-<th>
-p\_{31|30}
-</th>
-<th>
-p\_{21|20}
-</th>
-<th>
-p\_{30|20}
-</th>
+
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center"><span class="math inline"><em>p</em><sub>01|00</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>10|00</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>11|10</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>20|10</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>11|01</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>21|11</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>31|21</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>31|30</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>21|20</sub></span></th>
+<th align="center"><span class="math inline"><em>p</em><sub>30|20</sub></span></th>
 </tr>
-<tr>
-<td align="right">
-Simulation 1
-</td>
-<td align="right">
-0.45
-</td>
-<td align="right">
-0.45
-</td>
-<td align="right">
-0.20
-</td>
-<td align="right">
-0.45
-</td>
-<td align="right">
-0.25
-</td>
-<td align="right">
-0.30
-</td>
-<td align="right">
-0.35
-</td>
-<td align="right">
-0.35
-</td>
-<td align="right">
-0.20
-</td>
-<td align="right">
-0.30
-</td>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Simulation 1</strong></td>
+<td align="center">0.45</td>
+<td align="center">0.45</td>
+<td align="center">0.2</td>
+<td align="center">0.45</td>
+<td align="center">0.25</td>
+<td align="center">0.3</td>
+<td align="center">0.35</td>
+<td align="center">0.35</td>
+<td align="center">0.2</td>
+<td align="center">0.3</td>
 </tr>
-<tr>
-<td align="right">
-Simulation 2
-</td>
-<td align="right">
-0.10
-</td>
-<td align="right">
-0.30
-</td>
-<td align="right">
-0.35
-</td>
-<td align="right">
-0.60
-</td>
-<td align="right">
-0.90
-</td>
-<td align="right">
-0.90
-</td>
-<td align="right">
-0.80
-</td>
-<td align="right">
-0.80
-</td>
-<td align="right">
-0.25
-</td>
-<td align="right">
-0.65
-</td>
+<tr class="even">
+<td align="center"><strong>Simulation 2</strong></td>
+<td align="center">0.1</td>
+<td align="center">0.3</td>
+<td align="center">0.35</td>
+<td align="center">0.6</td>
+<td align="center">0.9</td>
+<td align="center">0.9</td>
+<td align="center">0.8</td>
+<td align="center">0.8</td>
+<td align="center">0.25</td>
+<td align="center">0.65</td>
 </tr>
-<tr>
-<td align="right">
-Simulation 3
-</td>
-<td align="right">
-0.10
-</td>
-<td align="right">
-0.40
-</td>
-<td align="right">
-0.05
-</td>
-<td align="right">
-0.70
-</td>
-<td align="right">
-0.50
-</td>
-<td align="right">
-0.50
-</td>
-<td align="right">
-0.50
-</td>
-<td align="right">
-0.80
-</td>
-<td align="right">
-0.05
-</td>
-<td align="right">
-0.75
-</td>
+<tr class="odd">
+<td align="center"><strong>Simulation 3</strong></td>
+<td align="center">0.1</td>
+<td align="center">0.4</td>
+<td align="center">0.05</td>
+<td align="center">0.7</td>
+<td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.8</td>
+<td align="center">0.05</td>
+<td align="center">0.75</td>
 </tr>
-<tr>
-<td align="right">
-Simulation 4
-</td>
-<td align="right">
-0.60
-</td>
-<td align="right">
-0.20
-</td>
-<td align="right">
-0.60
-</td>
-<td align="right">
-0.10
-</td>
-<td align="right">
-0.70
-</td>
-<td align="right">
-0.70
-</td>
-<td align="right">
-0.70
-</td>
-<td align="right">
-0.60
-</td>
-<td align="right">
-0.50
-</td>
-<td align="right">
-0.40
-</td>
+<tr class="even">
+<td align="center"><strong>Simulation 4</strong></td>
+<td align="center">0.6</td>
+<td align="center">0.2</td>
+<td align="center">0.6</td>
+<td align="center">0.1</td>
+<td align="center">0.7</td>
+<td align="center">0.7</td>
+<td align="center">0.7</td>
+<td align="center">0.6</td>
+<td align="center">0.5</td>
+<td align="center">0.4</td>
 </tr>
+</tbody>
 </table>
