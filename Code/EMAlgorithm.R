@@ -232,41 +232,6 @@ sapply(colnames(lambda),function(x){uniroot(dq.func,c(1,100000),curr.par=x)$root
 lambda[i,]=optim(rep(10,7),q.func)$par
 
 
-# 
-# dq.func=function(lamb.uni,curr.par){
-#   lamb=rep(10,7)
-#   names(lamb)=c("lambda00","lambda01","lambda10","lambda20","lambda30","lambda11","lambda21")
-#   lamb[curr.par]=lamb.uni
-#   q.final=sum_temp %>%
-#     left_join(
-#       #Subract 1 for each censored observation, which is a TrioID ending in a motif other than m31  
-#       #Count by TrioID
-#       tal_temp %>%
-#         dplyr::left_join(test_lamb %>%
-#                            dplyr::group_by(dyads,triads) %>% 
-#                            dplyr::summarize(q=sum(delta0*exp(-TimeBetween/lamb[ind.l])/((1-exp(-TimeBetween/lamb[ind.l]))*lamb[ind.l])+delta1*TimeBetween/lamb[ind.l]^2))
-#                              #q=sum((-delta0*TimeBetween*exp(-TimeBetween/lamb[ind.l]))/((1-exp(-TimeBetween/lamb[ind.l]))*lamb[ind.l]^2)+delta1*TimeBetween/lamb[ind.l]^2))
-#                          ,
-#                          by=c("dyads"="dyads","triads"="triads")
-#         ) %>% dplyr::left_join(max_tal_temp,
-#                                by=c("dyads"="dyads","triads"="triads")
-#         ) %>%
-#         dplyr::group_by(dyads,triads) %>% 
-#         dplyr::mutate(q.mod=ifelse(!is.na(q),q,0)),
-#       by=c("dyads"="dyads","triads"="triads")
-#     )  %>%
-#     dplyr::mutate(ind.l=match(paste("lambda",dyads,triads,sep=""),names(lamb))) %>% 
-#     dplyr::ungroup() %>% 
-#     dplyr::mutate(q.final=q.mod-n.trans/(lamb[ind.l])+sumtime/lamb[ind.l]^2) %>% .$q.final           
-#   return(q.final[curr.par])
-# }    
-
-
-#lambda[i,]=sapply(colnames(lambda),function(x){uniroot(dq.func,c(1,1000),extendInt="yes",curr.par=x)$root})
-
-
-
-
 ##Averages
 #Transitions
 ctmc.em.obs %>% 

@@ -11,9 +11,9 @@ trans_probs_true=c(rep(1/3,4),rep(0.5,4),rep(1/3,2))
 names(trans_probs_true)=c("p01|00","p10|00","p11|10","p20|10","p11|01",
                      "p21|11","p31|21","p31|30",
                      "p21|20","p30|20")
-pars=c(lambda_true,trans_probs_true)
-bigT=2000
-n=10000
+pars = c(lambda_true,trans_probs_true)
+bigT = 2000
+n = 10000
 
 
 triad.sim=function(pars,bigT){
@@ -24,11 +24,11 @@ triad.sim=function(pars,bigT){
   pars["p21|21"]=1-pars[["p31|21"]]
   pars["p30|30"]=1-pars[["p31|30"]]
   pars["p20|20"]=1-pars[["p30|20"]]-pars[["p21|20"]]
-  cumtime=0
-  timebetween=NULL
-  dyads=0
-  triads=0
-  i=1
+  cumtime = 0
+  timebetween = NULL
+  dyads = 0
+  triads = 0
+  i = 1
   while(cumtime[i] < bigT & !(dyads[i]==3 & triads[i]==1)){
     timebetween = c(timebetween,rexp(1, pars[paste("lambda",dyads[i],triads[i],sep="")]))
     cumtime = c(cumtime,sum(timebetween))
@@ -50,7 +50,10 @@ triad.sim=function(pars,bigT){
     }else{
       timebetween[i-1] = bigT
     }
-    return(data.frame(dyads=dyads[-i],triads=triads[-i],TimeBetween=timebetween[-i],cumtime=cumtime[-1]))
+    return(data.frame(dyads = dyads[-i],
+                      triads = triads[-i],
+                      TimeBetween = timebetween[-i],
+                      cumtime = cumtime[-1]))
   }
 }
 
@@ -59,9 +62,9 @@ triad.sim(pars,bigT)
 
 
 library(data.table)
-ctmc.sim=rbindlist(lapply(1:1000,function(x){data.frame(triad.sim(pars,40000),TrioID=x)}))
-colnames(ctmc.sim)=c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
-ctmc.sim=data.frame(ctmc.sim)
+ctmc.sim = rbindlist(lapply(1:1000,function(x){data.frame(triad.sim(pars,40000),TrioID=x)}))
+colnames(ctmc.sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
+ctmc.sim = data.frame(ctmc.sim)
 
 ctmc.sim %>% 
   group_by(dyads,triads) %>%

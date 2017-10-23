@@ -113,12 +113,12 @@ registerDoParallel(cl)
 
 sim_results=foreach (i = 1:dim(tandn)[1],.packages=c("dplyr","data.table")) %:%
   foreach( j = 1:nsim,.combine='rbind',.packages=c("dplyr","data.table")) %dopar%{
-    ctmc.sim = rbindlist(lapply(1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
+    ctmc_sim = rbindlist(lapply(1:tandn[i,2],function(x){data.frame(triad_sim(pars,tandn[i,1]),TrioID=x)}))
     #ctmc.sim=rbindlist(parLapplyLB(cl,1:1000,function(x){data.frame(triad.sim(pars,bigt[i]),TrioID=x)}))
-    colnames(ctmc.sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
-    ctmc.sim = data.frame(ctmc.sim)
+    colnames(ctmc_sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
+    ctmc_sim = data.frame(ctmc_sim)
     
-    both=EM_alg(ctmc.sim)
+    both=EM_alg(ctmc_sim)
     c(both[[1]], both[[2]])
   }
 
@@ -129,11 +129,11 @@ for(i in 1:dim(tandn)[1]){
   for(j in 1:nsim){
     clusterExport(cl,varlist=c("i","j","tandn","triad.sim"))
     #ctmc.sim=rbindlist(lapply(1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
-    ctmc.sim = rbindlist(parLapplyLB(cl,1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
-    colnames(ctmc.sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
-    ctmc.sim = data.frame(ctmc.sim)
+    ctmc_sim = rbindlist(parLapplyLB(cl,1:tandn[i,2],function(x){data.frame(triad.sim(pars,tandn[i,1]),TrioID=x)}))
+    colnames(ctmc_sim) = c("dyads","triads","TimeBetween","DateSubmitted","TrioID")
+    ctmc_sim = data.frame(ctmc_sim)
     
-    both = EM_alg(ctmc.sim)
+    both = EM_alg(ctmc_sim)
     sim_results[[i]][j,] = c(both[[1]],  both[[2]])
   }
   print((i/dim(tandn)[1])*100)
