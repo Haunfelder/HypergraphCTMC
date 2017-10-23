@@ -23,7 +23,7 @@ trans_probs_true = c(0.45, 0.45, 0.2, 0.45, 0.25, 0.3, 0.35, 0.35, 0.2, 0.3)
 names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars = c(lambda_true,trans_probs_true)
+pars1 = c(lambda_true,trans_probs_true)
 
 
 
@@ -35,7 +35,7 @@ trans_probs_true = c(0.10, 0.30, 0.35, 0.6, 0.9, 0.9, 0.8, 0.8, 0.25, 0.65)
 names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars = c(lambda_true,trans_probs_true)
+pars2 = c(lambda_true,trans_probs_true)
 
 
 #Set Parameters (Simulation 3)
@@ -46,7 +46,7 @@ trans_probs_true = c(0.10, 0.4, 0.05, 0.7, 0.5, 0.5, 0.5, 0.8, 0.05, 0.75)
 names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars = c(lambda_true,trans_probs_true)
+pars3 = c(lambda_true,trans_probs_true)
 
 #Set Parameters (Simulation 4)
 lambda_true = c(1/200, 1/400, 1/400, 1/450, 1/100, 1/150 , 1/150)
@@ -56,7 +56,7 @@ trans_probs_true = c(0.60, 0.2, 0.6, 0.1, 0.7, 0.7, 0.7, 0.6, 0.5, 0.4)
 names(trans_probs_true) = c("p01|00","p10|00","p11|10","p20|10","p11|01",
                           "p21|11","p31|21","p31|30",
                           "p21|20","p30|20")
-pars = c(lambda_true,trans_probs_true)
+pars4 = c(lambda_true,trans_probs_true)
 
 
 
